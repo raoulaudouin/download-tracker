@@ -1,4 +1,4 @@
-<?
+<?php
 
 $logFile = 'log.txt';
 
