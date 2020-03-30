@@ -1,5 +1,6 @@
-<?php
+<?
 
+$forceDownload = true; // true to force download (audio files won't be played by the browser, images won't be displayed, etc.)
 $logFile = 'log.txt';
 
 if (file_exists($logFile)) {
@@ -24,10 +25,14 @@ $downloadInfo = $isoRequestTime."\t".$clientIp.PHP_EOL;
 file_put_contents($logFile, $downloadInfo, FILE_APPEND);
 
 if(file_exists($downloadFile)) {
-	header("Cache-Control: no-cache");
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename="'.$downloadFile.'"');
-	header('Content-Length: '.filesize($downloadFile));
+	if ($forceDownload) {
+		header("Cache-Control: no-cache");
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename="'.$downloadFile.'"');
+		header('Content-Length: '.filesize($downloadFile));
+	} else {
+		header('Content-Type: '.mime_content_type($downloadFile));
+	}
 	readfile($downloadFile);
 	exit;
 } else {
