@@ -4,7 +4,7 @@ Small PHP script to track downloaded files on a server.
 
 ## How To
 
-To track a file, create a directory on your server with the same name as the tracked file, including extension (`file.zip` in this git).
+To track a file, create a directory on your server with the same name as the tracked file, including extension (`file.zip` in this repository).
 
 The name of the file/directory must comply with URL encoding and include nothing more than digits (0-9), letters (A-Z, a-z), hyphens and underscores.
 
