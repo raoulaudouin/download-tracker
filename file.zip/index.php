@@ -7,7 +7,7 @@ if (file_exists($logFile)) {
 	// Checks the first line of the log file
 	$logFirstLine = fgets(fopen($logFile, 'r'));
 } else {
-	die('The log file does not exist.');
+	die('The log cannot be found.');
 }
 
 $downloadFile = basename(__DIR__);
@@ -18,9 +18,9 @@ if ($logFirstLine !== $downloadFile.PHP_EOL) {
 }
 
 // stores download time and client IP in the log
-$isoRequestTime = date("r", $_SERVER['REQUEST_TIME']);
+$requestTime = date('d M Y H:i', $_SERVER['REQUEST_TIME']);
 $clientIp = $_SERVER['REMOTE_ADDR'];
-$downloadInfo = $isoRequestTime."\t".$clientIp.PHP_EOL;
+$downloadInfo = $requestTime."\t".$clientIp.PHP_EOL;
 
 file_put_contents($logFile, $downloadInfo, FILE_APPEND);
 
